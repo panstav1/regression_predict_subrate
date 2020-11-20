@@ -1,0 +1,15 @@
+flask-restplus
+flask
+pandas
+cython
+pep8
+logging
+bson
+PyYAML
+pymongo
+requests
+numpy
+shovel
+setuptools
+
+
