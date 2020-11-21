@@ -3,12 +3,14 @@ flask
 pandas
 cython
 pep8
+keras
 logging
 bson
 PyYAML
 pymongo
 requests
 numpy
+pandas
 shovel
 setuptools
 

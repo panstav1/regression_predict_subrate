@@ -14,11 +14,11 @@ desc = """
 test
 """
 
-setup(name='ex_ty',
+setup(name='regression_predict_subrate',
       version='0.1',
       url='',
       author='Panagiotis Stavrianos',
-      author_email='pstav@unipi.gr',
+      author_email='panagiwthssstav@gmail.com',
       long_description=desc,
       package_dir={'': 'src'},
       packages=find_packages('src'),  # dependency resolution
