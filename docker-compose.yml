@@ -1,0 +1,20 @@
+version: '2'
+
+services:
+  web:
+    build: .
+    ports:
+      - "4010:4010"
+    environment:
+      - MONGO_URL=mongo
+      - MONGO_PORT=27017
+    links:
+      - mongo
+    depends_on:
+      - mongo
+
+  mongo:
+    image: mongo:3.0.4
+    ports:
+      - "27017:27017"
+
