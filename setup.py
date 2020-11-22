@@ -22,7 +22,6 @@ setup(name='regression_predict_subrate',
       long_description=desc,
       package_dir={'': 'src'},
       packages=find_packages('src'),  # dependency resolution
-      #include_dirs=[np.get_include()],
       namespace_packages=['model_regr', ],
       include_package_data=True,
       install_requires=requirements,
