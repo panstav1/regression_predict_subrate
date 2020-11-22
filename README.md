@@ -131,6 +131,8 @@ are located. With the deployment of the API, these are transferred in the MongoD
 | Get prediction of a single submission rate | `GET` | `curl  -H "Content-Type: application/json" -X GET --data '{"surveyID": 58485, "features": [0,0,0,0,0,0,1,0,1,0,0,0,0,0,0,0,0,0,0,0,2,0,2,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,2,1,2]}' http://localhost:4010/api/pretrained/predict` |  
 | Get predictions of several submission rates | `GET` | `curl  -H "Content-Type: application/json" -X POST --data '[{"surveyID": 58485, "features": [0,0,0,0,0,0,1,0,1,0,0,0,0,0,0,0,0,0,0,0,2,0,2,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,2,1,2]},{"surveyID": 4234232, "features": [0,0,1,0,0,0,1,0,0,0,0,0,1,0,0,0,0,0,0,0,2,0,0,1,0,0,0,0,0,0,0,0,0,0,0,0,0,1,0,0,0,0,0,0,2,0,2]}]' http://localhost:4010/api/pretrained/predict` |
 
+_Note_: It is recommended to use Postman for sending requests, except if you connect with another API.
+
 The data transferred through the endpoint as a JSON object or as a list of JSON objects for the single and the multiple submission rates respectively. 
 The validity of the names and the length of the features is performed in the API.
 
@@ -140,6 +142,8 @@ The same structure of the pretrained model is provided also for training with th
 provided, such as:
 
 `curl -X POST http://localhost:4010/api/new_model/train[?optional_parameter1=X&optional_parameter2=Y&...]`
+
+_Note_: It is recommended to use Postman for sending requests, except if you connect with another API.
 
 with `[]` denoting the position of optional parameters, optional_parameter1 and optional_parameter2 the actual names of the parameters and X,Y their corresponding actual values.
 The optional parameters are listed below:
@@ -151,12 +155,30 @@ The optional parameters are listed below:
 | epochs | `epochs = 20` | `http://localhost:4010/api/new_model/train?epochs=50` |  
 | frac (% of the initial dataset in (0,1]) | `frac = 1` | `http://localhost:4010/api/new_model/train?frac=0.3` |
 
+_Note_: It is recommended to use Postman for sending requests, except if you connect with another API. (for training, it is highly recommended :D )
 The combination of the above parameters is feasible through the `&` operator. The API for the prediction works very similar to the API of the pretrained.  
 
 | Action | HTTP Method | Endpoint |  
 | -------------------------- | -------- | --------------------------------------- |  
 | Get prediction of a single submission rate | `GET` | `curl  -H "Content-Type: application/json" -X GET --data '{"surveyID": 58485, "features": [0,0,0,0,0,0,1,0,1,0,0,0,0,0,0,0,0,0,0,0,2,0,2,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,2,1,2]}' http://localhost:4010/api/new_model/predict` |  
 | Get predictions of several submission rates | `GET` | `curl  -H "Content-Type: application/json" -X POST --data '[{"surveyID": 58485, "features": [0,0,0,0,0,0,1,0,1,0,0,0,0,0,0,0,0,0,0,0,2,0,2,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,2,1,2]},{"surveyID": 4234232, "features": [0,0,1,0,0,0,1,0,0,0,0,0,1,0,0,0,0,0,0,0,2,0,0,1,0,0,0,0,0,0,0,0,0,0,0,0,0,1,0,0,0,0,0,0,2,0,2]}]' http://localhost:4010/api/new_model/predict` |
+
+### Documentation
+Generated from swagger, you can log in a browser at:
+
+`http://localhost:4010/api`
+
+Documentation is provided with automatic interactive API documentation.
+
+### Other Endpoints
+#### Health endpoint
+A useful endpoint is the one that checks that the docker is up:
+
+`curl -X GET http://localhost:4010/api/health`
+
+#### Logger endpoint
+The endpoint to fetch the internal logger file is:
+`curl -X GET http://localhost:4010/api/log`
 
 
 ## Useful Links  

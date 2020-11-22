@@ -189,9 +189,17 @@ class RegNewTrain(Resource):
         epochs = request.args.get('epochs', default=20, type=int)
         frac = request.args.get('frac', default=1, type=float)
 
-        if not (type(frac) is float and (1 >= frac >= 0.0001)):
+        # Test of frac feature
+        if not 1 >= frac >= 0.0001:
             return ioObj.generic_err400_with_resp(
                 'Wrong format of frac feature. Please, provide a float number in (0,1]', start_time)
+        LOG.info("Loaded formatted data",
+                 extra={"status": 200, "time_elapsed": "%.3f seconds" % (time.time() - start_time)})
+
+        # Test of frac feature
+        if not 1 >= test_size >= 0.0001:
+            return ioObj.generic_err400_with_resp(
+                'Wrong format of test_size feature. Please, provide a float number in (0,1]', start_time)
         LOG.info("Loaded formatted data",
                  extra={"status": 200, "time_elapsed": "%.3f seconds" % (time.time() - start_time)})
 
@@ -279,7 +287,7 @@ class RegNewPredict(Resource):
         start_time = time.time()
 
         # Fetch the new model from the database. If not present, the model is not trained and aborting
-        fetch = new_model_db.fs.find_one({'filename': new_mdl_name})
+        fetch = new_model_db.fs.find_one({'filename': mdl_new_name})
         if fetch is None:
             LOG.info("New model is not trained",
                      extra={"status": 404, "time_elapsed": "%.3f seconds" % (time.time() - start_time)})
